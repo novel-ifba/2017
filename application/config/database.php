@@ -73,6 +73,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+$dbDebug = getenv('DB_DEBUG');
+if ($dbDebug === FALSE)
+{
+	$dbDebug = (ENVIRONMENT !== 'production');
+}
+else
+{
+	$dbDebug = filter_var($dbDebug, FILTER_VALIDATE_BOOLEAN);
+}
+
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => getenv('DB_HOST') ?: 'localhost',
@@ -83,8 +93,7 @@ $db['default'] = array(
 	'port' => getenv('DB_PORT') ?: 3306,
 	'dbprefix' => '',
 	'pconnect' => FALSE,
-	//'db_debug' => (ENVIRONMENT !== 'production'),
-	'db_debug' => FALSE,
+	'db_debug' => $dbDebug,
 	'cache_on' => FALSE,
 	'cachedir' => '',
 	'char_set' => 'utf8',

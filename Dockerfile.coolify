@@ -6,6 +6,11 @@ RUN apt-get update \
 	&& a2enmod rewrite \
 	&& rm -rf /var/lib/apt/lists/*
 
+RUN printf "ServerName localhost\n<Directory /var/www/html>\n\tAllowOverride All\n\tRequire all granted\n</Directory>\n" > /etc/apache2/conf-available/servername.conf \
+	&& a2enconf servername
+
+RUN printf "log_errors=On\nerror_log=/dev/stderr\ndisplay_errors=Off\n" > /usr/local/etc/php/conf.d/coolify-debug.ini
+
 WORKDIR /var/www/html
 
 COPY . /var/www/html
