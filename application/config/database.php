@@ -75,11 +75,12 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'admnovel',
-	'database' => 'novel',
+	'hostname' => getenv('DB_HOST') ?: 'localhost',
+	'username' => getenv('DB_USERNAME') ?: 'root',
+	'password' => getenv('DB_PASSWORD') !== FALSE ? getenv('DB_PASSWORD') : 'admnovel',
+	'database' => getenv('DB_DATABASE') ?: 'novel',
 	'dbdriver' => 'mysqli',
+	'port' => getenv('DB_PORT') ?: 3306,
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	//'db_debug' => (ENVIRONMENT !== 'production'),

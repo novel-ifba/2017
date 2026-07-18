@@ -23,7 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost';
+$baseUrl = getenv('APP_BASE_URL');
+$config['base_url'] = $baseUrl ? rtrim($baseUrl, '/').'/' : 'http://localhost/';
 
 /*
 |--------------------------------------------------------------------------
@@ -314,7 +315,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = getenv('APP_ENCRYPTION_KEY') ?: 'novel-local-dev-key';
 
 /*
 |--------------------------------------------------------------------------
@@ -370,7 +371,18 @@ $config['encryption_key'] = '';
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 7200;
-$config['sess_save_path'] = NULL;
+$sessionSavePath = getenv('SESSION_SAVE_PATH');
+if ( ! $sessionSavePath)
+{
+	$sessionSavePath = sys_get_temp_dir().'/ci_sessions';
+}
+
+if ( ! is_dir($sessionSavePath))
+{
+	@mkdir($sessionSavePath, 0777, TRUE);
+}
+
+$config['sess_save_path'] = $sessionSavePath;
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
