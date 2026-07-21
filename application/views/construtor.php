@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 if ($tela == 'index') {
 		$this->load->view($tela);
 	} else {

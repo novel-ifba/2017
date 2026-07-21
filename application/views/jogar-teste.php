@@ -1,4 +1,4 @@
-﻿
+
 <div id="conteudo" class="col-md-12 col-xs-12">				
 	<form id="form" class="form-inline" role="form" method="post" action="<?php echo base_url('teste/inserirRodadaTeste/');?>">		
 			<div class="row">

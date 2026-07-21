@@ -1,4 +1,4 @@
-﻿<div id="conteudo" class="col-md-12 col-xs-12">
+<div id="conteudo" class="col-md-12 col-xs-12">
 	<form id="form" class="form-inline" role="form" method="post" action="<?php echo base_url('texto/inserirRodadaTexto');?>">	
 		<div class="row">
 			<button type="button" id="botaoSair" class="btn btn-danger" onclick="mostrarSair()">Sair do treinamento</button>

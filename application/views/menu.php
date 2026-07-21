@@ -1,4 +1,4 @@
-﻿	<!-- Aqui é a área do conteúdo -->
+	<!-- Aqui é a área do conteúdo -->
 	<div id="conteudo" class="col-md-12 col-xs-12">
 		<div class="row centered">
 			<h3 class="titulo-menu centered" style="text-transform: uppercase; color: #FFFFFF; font-weight: bold;">Escolha o nível</h3>
