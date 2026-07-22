@@ -2,7 +2,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class modelHistoria extends CI_Model {
+class ModelHistoria extends CI_Model {
 
 	public function __construct() {
         parent::__construct();
