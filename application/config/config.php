@@ -409,9 +409,18 @@ $config['sess_regenerate_destroy'] = FALSE;
 |
 */
 $config['cookie_prefix']	= '';
-$config['cookie_domain']	= '';
+$config['cookie_domain']	= getenv('COOKIE_DOMAIN') ?: '';
 $config['cookie_path']		= '/';
-$config['cookie_secure']	= FALSE;
+$cookieSecure = getenv('COOKIE_SECURE');
+if ($cookieSecure === FALSE || $cookieSecure === '')
+{
+	$cookieSecure = (stripos($config['base_url'], 'https://') === 0);
+}
+else
+{
+	$cookieSecure = filter_var($cookieSecure, FILTER_VALIDATE_BOOLEAN);
+}
+$config['cookie_secure']	= $cookieSecure;
 $config['cookie_httponly'] 	= FALSE;
 
 /*
@@ -528,4 +537,4 @@ $config['rewrite_short_tags'] = FALSE;
 | Comma-separated:	'10.0.1.200,192.168.5.0/24'
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
-$config['proxy_ips'] = '';
+$config['proxy_ips'] = getenv('PROXY_IPS') ?: '';
