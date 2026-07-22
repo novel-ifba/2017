@@ -122,7 +122,7 @@ CREATE TABLE ConquistaJogador (
 codJogador int NOT NULL,
 codConquista int NOT NULL,
 FOREIGN KEY(codJogador) REFERENCES Jogador (codJogador),
-FOREIGN KEY(codConquista) REFERENCES conquista (codConquista)
+FOREIGN KEY(codConquista) REFERENCES Conquista (codConquista)
 );
 
 ALTER TABLE ConquistaJogador CHARACTER SET utf8 COLLATE utf8_general_ci;
