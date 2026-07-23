@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class modelJogador extends CI_Model {
+class ModelJogador extends CI_Model {
 
 	public function __construct() {
         parent::__construct();
@@ -450,6 +450,5 @@ class modelJogador extends CI_Model {
 		$retorno = $this->db->get()->result();
 	}
 }
-
 
 

@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class modelHistoria extends CI_Model {
+class ModelHistoria extends CI_Model {
 
 	public function __construct() {
         parent::__construct();
@@ -173,7 +173,7 @@ class modelHistoria extends CI_Model {
         $retorno = array();
         foreach ($posicoes as $pos) {
             $this->db->select('palavra');
-            $this->db->from('palavrabonus');
+            $this->db->from('PalavraBonus');
             $this->db->where('codBonus', $codBonus);
             $this->db->where('inicio', $pos);
             $this->db->or_where('fim', $pos);            

@@ -1,7 +1,13 @@
-﻿</div>
+</div>
+
+<?php
+	$temModalHistoria = isset($abrirModalHistoria) && is_array($abrirModalHistoria) && isset($abrirModalHistoria[0], $abrirModalHistoria[1]);
+	$temModalConquista = isset($conquista, $nomeConquista[0]) && $conquista != 0;
+?>
 
 <!--MODAL DA HISTORIA-->
 
+<?php if ($temModalHistoria): ?>
 <div class="modal fade" id="modalHistoria" role="dialog">		
 	    <div class="modal-dialog modal-lg">
 	      <div class="modal-content" id="conteudoModalHistoria">
@@ -48,13 +54,15 @@
 		    </div>
 	      </div>
 	    </div>
-	  </div>
-	</div>
-	<input type="hidden" name="qtd" id="qtd" value="<?php echo $abrirModalHistoria[1]; ?>">
+		  </div>
+		</div>
+		<input type="hidden" name="qtd" id="qtd" value="<?php echo $abrirModalHistoria[1]; ?>">
+<?php endif; ?>
 
 <!-- MODAL DA CONQUISTA -->
 
  <!-- Modal -->
+<?php if ($temModalConquista): ?>
   <div class="modal fade" id="modalConquista" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -80,6 +88,7 @@
       </div>
     </div>
   </div>
+<?php endif; ?>
 
 
 
@@ -100,13 +109,13 @@
 
 <?php	
 
-	if ($conquista != 0){
+	if ($temModalConquista){
 		echo '<script language="javascript">';			
 				echo '$("#modalConquista").modal();';
 		echo '</script>';
 	}
 
-	if ($abrirModalHistoria != FALSE){
+	if ($temModalHistoria){
 		echo '<script language="javascript">';			
 				echo '$("#modalHistoria").modal();';
 		echo '</script>';

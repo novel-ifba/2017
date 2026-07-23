@@ -23,7 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost';
+$baseUrl = getenv('APP_BASE_URL');
+$config['base_url'] = $baseUrl ? rtrim($baseUrl, '/').'/' : 'http://localhost/';
 
 /*
 |--------------------------------------------------------------------------
@@ -213,7 +214,13 @@ $config['directory_trigger'] = 'd';
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$logThreshold = getenv('APP_LOG_THRESHOLD');
+if ($logThreshold === FALSE || $logThreshold === '')
+{
+	$logThreshold = ENVIRONMENT === 'production' ? 1 : 0;
+}
+
+$config['log_threshold'] = (int) $logThreshold;
 
 /*
 |--------------------------------------------------------------------------
@@ -314,7 +321,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = getenv('APP_ENCRYPTION_KEY') ?: 'novel-local-dev-key';
 
 /*
 |--------------------------------------------------------------------------
@@ -370,7 +377,18 @@ $config['encryption_key'] = '';
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 7200;
-$config['sess_save_path'] = NULL;
+$sessionSavePath = getenv('SESSION_SAVE_PATH');
+if ( ! $sessionSavePath)
+{
+	$sessionSavePath = sys_get_temp_dir().'/ci_sessions';
+}
+
+if ( ! is_dir($sessionSavePath))
+{
+	@mkdir($sessionSavePath, 0777, TRUE);
+}
+
+$config['sess_save_path'] = $sessionSavePath;
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
@@ -391,9 +409,18 @@ $config['sess_regenerate_destroy'] = FALSE;
 |
 */
 $config['cookie_prefix']	= '';
-$config['cookie_domain']	= '';
+$config['cookie_domain']	= getenv('COOKIE_DOMAIN') ?: '';
 $config['cookie_path']		= '/';
-$config['cookie_secure']	= FALSE;
+$cookieSecure = getenv('COOKIE_SECURE');
+if ($cookieSecure === FALSE || $cookieSecure === '')
+{
+	$cookieSecure = (stripos($config['base_url'], 'https://') === 0);
+}
+else
+{
+	$cookieSecure = filter_var($cookieSecure, FILTER_VALIDATE_BOOLEAN);
+}
+$config['cookie_secure']	= $cookieSecure;
 $config['cookie_httponly'] 	= FALSE;
 
 /*
@@ -510,4 +537,4 @@ $config['rewrite_short_tags'] = FALSE;
 | Comma-separated:	'10.0.1.200,192.168.5.0/24'
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
-$config['proxy_ips'] = '';
+$config['proxy_ips'] = getenv('PROXY_IPS') ?: '';

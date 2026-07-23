@@ -1,6 +1,5 @@
-
-ALTER DATABASE Novel-Conquista_ CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE Novel;
+CREATE DATABASE IF NOT EXISTS novel CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE novel;
 
 CREATE TABLE Jogador (
 email Varchar(30) NOT NULL,
@@ -123,7 +122,7 @@ CREATE TABLE ConquistaJogador (
 codJogador int NOT NULL,
 codConquista int NOT NULL,
 FOREIGN KEY(codJogador) REFERENCES Jogador (codJogador),
-FOREIGN KEY(codConquista) REFERENCES conquista (codConquista)
+FOREIGN KEY(codConquista) REFERENCES Conquista (codConquista)
 );
 
 ALTER TABLE ConquistaJogador CHARACTER SET utf8 COLLATE utf8_general_ci;
@@ -1485,4 +1484,3 @@ INSERT INTO PalavraBonus (palavra, inicio, fim, codBonus) VALUES
 	("JEJUM", 110, 170,5),
 	("ENCOBRIR", 85, 78,5),
 	("TANGENTE", 116, 4,5);
-

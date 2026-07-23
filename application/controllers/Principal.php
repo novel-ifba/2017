@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Principal extends CI_Controller {
@@ -47,6 +47,7 @@ class Principal extends CI_Controller {
 		    $login = $this->modelJogador->fazerLogin($dados['login'], $dados['senha']);
 		    	        
 		    if($login){	        	
+		    	$this->session->sess_regenerate(TRUE);
 		    	$this->session->set_userdata(array(
 	                    'codJogador' => $login['codJogador'],
 	                    'avatar' => $login['avatar'],
@@ -55,6 +56,7 @@ class Principal extends CI_Controller {
 	                    'nivel' => $login['nivel'],
 	                    'experiencia' => $login['experiencia'],
 	                ));
+		    	session_write_close();
 		    	redirect('principal/menu');
 		    } else {
 		    	$pagina = array('tela' => 'index', 'erro'=> TRUE, 'abrirModalHistoria'=> FALSE, 'enviou' => TRUE, 'email'=>NULL, 'conquista' => 0,);
@@ -159,6 +161,7 @@ class Principal extends CI_Controller {
 	public function loginCadastro($login, $senha){
 		$logou = $this->modelJogador->fazerLogin($login, $senha);		
 		    if($logou){	        	
+		    	$this->session->sess_regenerate(TRUE);
 		    	$this->session->set_userdata(array(
 	                    'codJogador' => $logou['codJogador'],
 	                    'avatar' => $logou['avatar'],
@@ -168,6 +171,7 @@ class Principal extends CI_Controller {
 	                    'experiencia' => $logou['experiencia'],
 	                ));
 		    	$this->modelJogador->conquistarEntrada($logou['codJogador']);
+		    	session_write_close();
 		    	redirect('principal/menu');
 		    } else {
 		    	$pagina = array('tela' => 'index', 'erro'=> TRUE, 'abrirModalHistoria'=> FALSE, 'conquista' => 0,);

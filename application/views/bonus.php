@@ -1,4 +1,4 @@
-﻿<!-- Aqui e a area do conteudo -->
+<!-- Aqui e a area do conteudo -->
 	<div class="col-md-12 col-xs-12 afastado-1pc vertical-center">
 		<div class="col-md-9 col-xs-12 centered">
 			<div class="row centered col-md-2 col-md-offset-4">

@@ -1,0 +1,24 @@
+FROM php:7.4-apache
+
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends unzip \
+	&& docker-php-ext-install mysqli \
+	&& a2enmod rewrite \
+	&& rm -rf /var/lib/apt/lists/*
+
+RUN printf "ServerName localhost\n<Directory /var/www/html>\n\tAllowOverride All\n\tRequire all granted\n</Directory>\n" > /etc/apache2/conf-available/servername.conf \
+	&& a2enconf servername
+
+RUN printf "log_errors=On\nerror_log=/dev/stderr\ndisplay_errors=Off\n" > /usr/local/etc/php/conf.d/coolify-debug.ini
+
+WORKDIR /var/www/html
+
+COPY . /var/www/html
+
+RUN mkdir -p /tmp/ci_sessions \
+	&& chown -R www-data:www-data /var/www/html/application/cache /var/www/html/application/logs /tmp/ci_sessions
+
+ENV CI_ENV=production
+ENV SESSION_SAVE_PATH=/tmp/ci_sessions
+
+EXPOSE 80

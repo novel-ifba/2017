@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class modelTeste extends CI_Model {
+class ModelTeste extends CI_Model {
 
 	public function __construct() {
         parent::__construct();
@@ -120,7 +120,7 @@ class modelTeste extends CI_Model {
                 'pontuacao' => $pontuacao,
             );                    
 
-            $this->db->insert('rodada', $dadosRodada); 
+            $this->db->insert('Rodada', $dadosRodada); 
             $codRodada = $this->db->insert_id();
             
             foreach ($separados as $key) {                

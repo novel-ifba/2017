@@ -1,4 +1,4 @@
-﻿
+
 <div id="conteudo" class="col-md-12 col-xs-12">				
 	<form id="form" class="form-inline" role="form" method="post" action="<?php echo base_url('palavra/inserirRodadaPalavra');?>">		
 			<div class="row">
@@ -48,7 +48,7 @@
 											echo '<div class="row centered">';
 												if ($p->imagem != NULL){
 													echo '<div class="col-md-4 col-xs-12">';
-														echo "<img class="."img-responsive"." src=".base_url('assets/img/palavra-fake.png');">";
+														echo "<img class="."img-responsive"." src=".base_url('assets/img/palavra.png');">";
 													echo '</div>';
 													echo '<div class="col-md-8 col-xs-12">';
 												} else {
@@ -244,5 +244,4 @@
 
 
 </form>
-
 
