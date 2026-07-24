@@ -1,0 +1,33 @@
+# Copia identica do Dockerfile na raiz -- existe so porque o app no Coolify
+# esta configurado para procurar "Dockerfile.coolify" (campo "Dockerfile
+# Location" nas configuracoes de build). Se editar um, edite o outro.
+FROM php:7.4-apache
+
+# CodeIgniter 3.1 needs mysqli; enable Apache's rewrite module for the
+# .htaccess-based URL routing used by this app.
+RUN docker-php-ext-install mysqli \
+    && a2enmod rewrite \
+    && echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+# Allow .htaccess overrides (mod_rewrite) for the app's DocumentRoot.
+RUN { \
+    echo '<Directory /var/www/html>'; \
+    echo '    AllowOverride All'; \
+    echo '    Require all granted'; \
+    echo '</Directory>'; \
+    } > /etc/apache2/conf-available/novel-app.conf \
+    && a2enconf novel-app
+
+WORKDIR /var/www/html
+
+COPY . /var/www/html
+
+# application/cache and application/logs must be writable by the webserver.
+RUN chown -R www-data:www-data \
+      /var/www/html/application/cache \
+      /var/www/html/application/logs \
+    && chmod -R 775 \
+      /var/www/html/application/cache \
+      /var/www/html/application/logs
+
+EXPOSE 80
