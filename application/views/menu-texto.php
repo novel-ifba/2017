@@ -59,7 +59,7 @@
 
 		<input type="hidden" id="abrirModalGabarito" value="<?php echo ($abrirModalGabarito); ?>">		
 		<input type="hidden" id="erro" value="<?php echo ($erro); ?>">			
-		<input type="hidden" id="abrirModalHistoria" value="<?php echo ($abrirModalHistoria[0]); ?>">
+		<input type="hidden" id="abrirModalHistoria" value="<?php echo is_array($abrirModalHistoria) ? $abrirModalHistoria[0] : 0; ?>">
 
 <!-- Modal -->
   	<div class="modal fade" id="modalGabarito" role="dialog">

@@ -15,18 +15,22 @@
 	        		
 				    <!-- Wrapper for slides -->
 				    <div class="carousel-inner" role="listbox" >	
-				    	<?php $avatar = $this->session->userdata('avatar'); ?>
+				    	<?php
+				    	$avatar = $this->session->userdata('avatar');
+				    	$capituloHistoria = is_array($abrirModalHistoria) ? $abrirModalHistoria[0] : 0;
+				    	$qtdHistoria = is_array($abrirModalHistoria) ? $abrirModalHistoria[1] : 0;
+				    	?>
 				    	<div class="item active historia">
-	        				<img class="historia centered img-responsive" src="<?php echo base_url('assets/img/historia/'.$avatar.'/'.$abrirModalHistoria[0].'-1.png'); ?>">
-	        			</div>			    
-					    <?php 				    	
-					    	
-					    	for ($i=2; $i <= $abrirModalHistoria[1]; $i++) { 					    					    
+	        				<img class="historia centered img-responsive" src="<?php echo base_url('assets/img/historia/'.$avatar.'/'.$capituloHistoria.'-1.png'); ?>">
+	        			</div>
+					    <?php
+
+					    	for ($i=2; $i <= $qtdHistoria; $i++) {
 					    		echo '<div class="item historia">';
-	        					echo 	'<img class="historia centered img-responsive" src="'.base_url('assets/img/historia/'.$avatar.'/'.$abrirModalHistoria[0].'-'.$i.'.png').'">';	        					
+	        					echo 	'<img class="historia centered img-responsive" src="'.base_url('assets/img/historia/'.$avatar.'/'.$capituloHistoria.'-'.$i.'.png').'">';
 	        					echo '</div>';
-					    	}  
-					    ?>		    
+					    	}
+					    ?>
 				    </div>
 
 				    <!-- Left and right controls -->
@@ -50,7 +54,7 @@
 	    </div>
 	  </div>
 	</div>
-	<input type="hidden" name="qtd" id="qtd" value="<?php echo $abrirModalHistoria[1]; ?>">
+	<input type="hidden" name="qtd" id="qtd" value="<?php echo is_array($abrirModalHistoria) ? $abrirModalHistoria[1] : 0; ?>">
 
 <!-- MODAL DA CONQUISTA -->
 

@@ -42,7 +42,7 @@
 			?>
 		
 		<input type="hidden" id="abrirModalGabarito" value="<?php echo ($abrirModalGabarito); ?>">
-		<input type="hidden" id="abrirModalHistoria" value="<?php echo ($abrirModalHistoria[0]); ?>">
+		<input type="hidden" id="abrirModalHistoria" value="<?php echo is_array($abrirModalHistoria) ? $abrirModalHistoria[0] : 0; ?>">
 		<input type="hidden" id="inseriu" value="<?php echo ($inseriu); ?>">
 		<input type="hidden" id="erro" value="<?php echo ($erro); ?>">
 		
