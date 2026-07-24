@@ -1,4 +1,4 @@
-﻿	<!-- Aqui é a área do conteúdo -->
+	<!-- Aqui é a área do conteúdo -->
 	<div id="conteudo" class="col-md-12 col-xs-12">
 		<div class="row">
 				<h3 class="titulo-menu">Nível Teste</h3>
