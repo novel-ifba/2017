@@ -318,6 +318,26 @@ $config['encryption_key'] = getenv('APP_ENCRYPTION_KEY') ?: '';
 
 /*
 |--------------------------------------------------------------------------
+| Session ID length (PHP 7.1+ compatibility)
+|--------------------------------------------------------------------------
+|
+| CI_Session validates incoming session cookies against a 40-char hex
+| regex (the old SHA-1-based id format). PHP 7.1 removed the ini settings
+| CI uses to request that format (session.hash_function /
+| session.hash_bits_per_character) in favor of session.sid_length /
+| session.sid_bits_per_character, which default to a 32-char id. Without
+| forcing 40 here, every session cookie CI receives fails its own regex
+| and gets discarded, so a brand new session is started on every request.
+|
+*/
+if (is_php('7.1'))
+{
+	ini_set('session.sid_length', 40);
+	ini_set('session.sid_bits_per_character', 4);
+}
+
+/*
+|--------------------------------------------------------------------------
 | Session Variables
 |--------------------------------------------------------------------------
 |
