@@ -1,0 +1,15 @@
+.git
+.gitignore
+.metadata
+.settings
+.codex
+.agents
+.buildpath
+.project
+desktop.ini
+**/desktop.ini
+readme.rst
+contributing.md
+LICENSE
+license.txt
+novel_create_insert.sql
