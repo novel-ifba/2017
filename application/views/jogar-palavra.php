@@ -1,6 +1,7 @@
 
 <div id="conteudo" class="col-md-12 col-xs-12">				
-	<form id="form" class="form-inline" role="form" method="post" action="<?php echo base_url('palavra/inserirRodadaPalavra');?>">		
+	<form id="form" class="form-inline" role="form" method="post" action="<?php echo base_url('palavra/inserirRodadaPalavra');?>">
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">		
 			<div class="row">
 				<div>
 					<button type="button" id="botaoMostrarRegra" class="btn btn-warning" onclick="mostrarRegra()">Ver os ensinamentos do mestre Exímio</button>

@@ -15,9 +15,14 @@ class modelAdministracao extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('Administrador');
 		$this->db->where('login', $login);
-		$this->db->where('senha', $senha);
 		$this->db->limit(1);
 		$query = $this->db->get()->result();
+
+		// A senha era comparada em texto puro dentro do WHERE. Agora confere o
+		// hash em PHP; linhas antigas sao regravadas no primeiro login.
+		if ($query != NULL && ! $this->conferirSenha($senha, $query[0])) {
+			$query = NULL;
+		}
 
 		if ($query != NULL){
 
@@ -32,6 +37,23 @@ class modelAdministracao extends CI_Model {
 		}else {
 			return FALSE;
 		} 
+	}
+
+	private function conferirSenha($senha, $admin)
+	{
+		if (password_verify($senha, $admin->senha)) {
+			return TRUE;
+		}
+
+		if ($senha === $admin->senha OR md5($senha) === $admin->senha) {
+			$this->db->where('codAdministrador', $admin->codAdministrador);
+			$this->db->update('Administrador', array(
+				'senha' => password_hash($senha, PASSWORD_DEFAULT),
+			));
+			return TRUE;
+		}
+
+		return FALSE;
 	}
 	
 }

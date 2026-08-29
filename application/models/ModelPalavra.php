@@ -84,7 +84,7 @@ class modelPalavra extends CI_Model {
     			'pontuacao' => $pontuacao,
     			);            
 
-    		$this->db->insert('rodada', $dados);
+    		$this->db->insert('Rodada', $dados);
             $codRodada = $this->db->insert_id();
             $dadosRodadaGrafema = array('codGrafema'=>$codGrafema, 'codRodada'=>$codRodada); 
             $this->db->insert('RodadaGrafema', $dadosRodadaGrafema);  

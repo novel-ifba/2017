@@ -7,6 +7,7 @@
 								<h1 class="titulo-menu centered" style="color: #FFFFFF; text-transform: uppercase;">Cadastre-se para jogar!</h1><br><br>
 							</div>							
 							<form class="form-vertical col-md-12 col-xs-12 centered" id="form" role="form" method="post" action="<?php echo base_url('principal/realizarCadastro');?>">
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							  <div class="col-md-offset-3 col-xs-offset-3">
 							  	<div class="row">
 							  		<div class="form-group centered">

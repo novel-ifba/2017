@@ -47,24 +47,55 @@ está vazio — depois de alterá-lo, use `docker compose down -v`.
 
 ### Estrutura
 
-| Arquivo                  | Papel                                              |
-|--------------------------|----------------------------------------------------|
-| `Dockerfile`             | PHP 7.4 + Apache, `mysqli` e `mod_rewrite`         |
-| `docker-compose.yml`     | Serviços `web` e `db` (MariaDB 10.6)               |
-| `docker/apache/novel.conf` | `AllowOverride All`, para o `.htaccess` valer     |
-| `docker/php/novel.ini`   | Ajustes de sessão exigidos pelo CodeIgniter 3.1.0  |
+| Arquivo                    | Papel                                             |
+|----------------------------|---------------------------------------------------|
+| `Dockerfile`               | PHP 7.4 + Apache, `mysqli` e `mod_rewrite`        |
+| `docker-compose.yml`       | Serviços `web` e `db` (MariaDB 10.6)              |
+| `docker/apache/novel.conf` | `AllowOverride All` e `PassEnv CI_ENV`            |
+| `docker/php/novel.ini`     | `session.save_path`, ausente na imagem oficial    |
+
+### Versões
+
+| Componente   | Versão  |
+|--------------|---------|
+| CodeIgniter  | 3.1.13  |
+| jQuery       | 3.7.1   |
+| Bootstrap    | 3.4.1   |
+| PHP          | 7.4     |
+| MariaDB      | 10.6    |
+
+O CodeIgniter 3 é fim de linha — 3.1.13 é a última versão da série. Migrar para
+o CI 4 significaria reescrever controllers, models, views e rotas.
 
 ### Por que PHP 7.4 e não 8.x
 
-O projeto usa CodeIgniter 3.1.0, que não é compatível com PHP 8. Além disso,
-o CI 3.1.0 valida o id de sessão com `/^[0-9a-f]{40}$/` — o tamanho do SHA-1
-que o PHP até a versão 7.0 usava. A partir do PHP 7.1 o id passou a ter 32
-caracteres, o que fazia o framework descartar o cookie e criar uma sessão nova
-a cada requisição, impedindo o login. `docker/php/novel.ini` devolve o id para
-40 caracteres hexadecimais, resolvendo isso sem alterar o framework.
+O CodeIgniter 3 não é compatível com PHP 8. A 7.4 é a versão mais recente que
+o framework suporta.
+
+### Ambiente
+
+`CI_ENV` controla a exibição de erros (`index.php`). O compose define
+`production`, que oculta avisos do PHP do visitante; use `development` para
+depurar. Como o CodeIgniter lê `$_SERVER['CI_ENV']`, o Apache precisa repassar
+a variável — daí o `PassEnv CI_ENV` em `docker/apache/novel.conf`.
+
+### Senhas
+
+As senhas são gravadas com `password_hash()` (bcrypt). Contas antigas em `md5`
+ou em texto puro continuam entrando e são regravadas no formato novo no
+primeiro login, tanto para jogadores quanto para administradores.
+
+### Proteção CSRF
+
+`csrf_protection` está ligado. Todo formulário POST inclui o campo escondido
+gerado por `$this->security->get_csrf_hash()`; um POST sem o token recebe 403.
 
 ### Configuração fora do Docker
 
 `application/config/database.php` e `config.php` aceitam as variáveis
 `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME` e `BASE_URL`. Sem elas, os
 valores padrão de instalação local (XAMPP/WAMP) continuam valendo.
+
+O banco precisa ser criado com o nome `novel`. Os nomes de tabela respeitam a
+caixa do `CREATE TABLE`, então o projeto roda em MySQL/MariaDB no Linux com a
+configuração padrão (`lower_case_table_names = 0`).

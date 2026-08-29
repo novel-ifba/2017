@@ -3,7 +3,7 @@ USE novel;
 
 CREATE TABLE Jogador (
 email Varchar(30) NOT NULL,
-senha Varchar(80) NOT NULL,
+senha Varchar(255) NOT NULL,
 experiencia int DEFAULT 0,
 tempoTotal int DEFAULT 0,
 codJogador int PRIMARY KEY AUTO_INCREMENT,
@@ -122,7 +122,7 @@ CREATE TABLE ConquistaJogador (
 codJogador int NOT NULL,
 codConquista int NOT NULL,
 FOREIGN KEY(codJogador) REFERENCES Jogador (codJogador),
-FOREIGN KEY(codConquista) REFERENCES conquista (codConquista)
+FOREIGN KEY(codConquista) REFERENCES Conquista (codConquista)
 );
 
 ALTER TABLE ConquistaJogador CHARACTER SET utf8 COLLATE utf8_general_ci;
@@ -138,7 +138,7 @@ ALTER TABLE Cenas CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE Administrador (
 login Varchar(20) NOT NULL,
-senha Varchar(20) NOT NULL,
+senha Varchar(255) NOT NULL,
 nome Varchar(50) NOT NULL,
 email Varchar(30) NOT NULL,
 codAdministrador int PRIMARY KEY AUTO_INCREMENT
@@ -176,8 +176,8 @@ ALTER TABLE JogadorBonus CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 
 INSERT INTO Jogador (nome, email, login, senha, avatar) VALUES 
-  -- ModelJogador::fazerLogin() compara md5($senha); a senha em claro e "123@Mudar".
-  ("Teste", "teste@mail.com", "teste", "a6ac10b3b739e420edacb541488d6b1f", "graciliano");
+  -- Hash de password_hash(); a senha em claro e "123@Mudar".
+  ("Teste", "teste@mail.com", "teste", "$2y$12$KW0f2mGQ0vof9zf.Z8etf.x0KdkDnL9IxMajL82P5qGR.opA7EkiW", "graciliano");
 
 INSERT INTO Grafema (tipoGrafema, quadros) VALUES 
 	("g_j", 3),
@@ -1450,7 +1450,8 @@ INSERT INTO Cenas(nomeCena, nivelDesbloqueio, quadros) VALUES
   ("cena17", 24, 9);
 
 INSERT INTO Administrador (nome, email, login, senha) VALUES 
-	("Administrador do Novel", "novel.noreply@gmail.com", "teste123", "123@Mudar");
+	-- Hash de password_hash(); a senha em claro e "123@Mudar".
+	("Administrador do Novel", "novel.noreply@gmail.com", "teste123", "$2y$12$0JTPZTTZGJ2sklF8oTin.uaU5zBfcOkv1eoYfcym7841He5fCoUNm");
 
 INSERT INTO Bonus (textoBonus, experienciaNecessaria) VALUES
 	("ETEULRHGABILZTAWDODFEVMJZIVXNJCCOMCIESHOYNTQGHTNDGGTRCZPMKSIOXJPLWYOVBMUTRCCKBADOLTIYAXYWWAGPJOWSSDIKOPAMRUTVDDEUQIOXTOLRZDXUJIAHLQOOVNIPYOYBSXBBALPSDCLIOIRDERRPASFPEBOTGDTSEIWYBYTZLANOICIDSIRUJYLKMROXVNDJCVYKBQVROWNMVHAOFUJH", 200),

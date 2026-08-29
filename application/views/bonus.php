@@ -1,6 +1,8 @@
 <!-- Aqui e a area do conteudo -->
 	<div class="col-md-12 col-xs-12 afastado-1pc vertical-center">
 		<div class="col-md-9 col-xs-12 centered">
+			<?php $temBonus = ! empty($bonus[0][0]) && ! empty($bonus[1]) && ! empty($bonus[2][0]); ?>
+			<?php if ($temBonus): ?>
 			<div class="row centered col-md-2 col-md-offset-4">
 				<p><span class="glyphicon glyphicon-time relogio"></span>
 				<input type="text" id="tempo" name="tempo" disabled=""></p>
@@ -17,6 +19,7 @@
 					echo '</table>';
 					
 					echo '<form id="form" role="form" method="post" action="'.base_url('principal/inserirBonus').'">';
+					echo '<input type="hidden" name="'.$this->security->get_csrf_token_name().'" value="'.$this->security->get_csrf_hash().'">';
 						echo '<div class="row">';
 						echo '<table id="tabela-bonus" class="centered table table-bordered" style="margin-bottom: 10px!important;">';
 							
@@ -66,8 +69,15 @@
 					<div class="col-xs-2 col-md-2"></div>
 				</div>
 			</form>
+			<?php else: ?>
+			<h2 class="titulo">Nenhum b&ocirc;nus liberado ainda</h2>
+			<p>Os b&ocirc;nus s&atilde;o desbloqueados por experi&ecirc;ncia. Continue jogando
+			palavras, textos e testes para liberar o primeiro.</p>
+			<a class="btn btn-success" href="<?php echo base_url('principal/menu'); ?>">Voltar ao menu</a>
+			<?php endif; ?>
 		</div>	
 
+<?php if ($temBonus): ?>
 <script type="text/javascript">
 	desaparecer();
 	function desaparecer(){
@@ -112,3 +122,4 @@
 		setTimeout("iniciarCronometro()",1000);
 	} 
 </script>
+<?php endif; ?>

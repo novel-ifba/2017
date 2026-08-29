@@ -42,7 +42,7 @@
 			?>
 		
 		<input type="hidden" id="abrirModalGabarito" value="<?php echo ($abrirModalGabarito); ?>">
-		<input type="hidden" id="abrirModalHistoria" value="<?php echo ($abrirModalHistoria[0]); ?>">
+		<input type="hidden" id="abrirModalHistoria" value="<?php echo (isset($abrirModalHistoria[0]) ? $abrirModalHistoria[0] : ''); ?>">
 		<input type="hidden" id="inseriu" value="<?php echo ($inseriu); ?>">
 		<input type="hidden" id="erro" value="<?php echo ($erro); ?>">
 		
@@ -58,6 +58,7 @@
 	        <input type="hidden" id="inputs" name="inputs" value=""/>
 	        <div class="modal-body">          
 					<?php
+						if ( ! empty($abrirModalGabarito)) {
 						echo '<div class="table-responsive">';									
 							echo '<table class="centered tabela-gabarito table table-striped">';
 								echo '<tr>';
@@ -79,6 +80,7 @@
 							echo '</table>';
 						echo '</div>';
 						echo '<h4 class="centered afastado-1pc" > Sua pontuação foi '.$pontuacao. ' pontos!</h4>';						
+						}
 					?>			
 	        </div>
 		    <div class="row centered">

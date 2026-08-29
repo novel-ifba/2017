@@ -5,6 +5,7 @@
 						<div id="painel-login" class="centered col-md-12 col-xs-12">
 							<h1>Login do administrador</h1>
 							<form class="form-inline" role="form" method="post" action="<?php echo base_url('administracao/fazerLogin');?>">
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							  	<div class="form-group">
 							    	<label for="login">Login:</label>
 							    	<input type="text" id="login" name="login" required class="form-control" id="login">

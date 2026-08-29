@@ -10,8 +10,8 @@ class Administracao extends CI_Controller {
     }	
 
 	public function index(){
-		if ($this->session->userdata('logged_in')) {
-                redirect('principal/menu');
+		if ($this->session->userdata('codAdministrador')) {
+                redirect('administracao/menuAdministrador');
             } else{
 			$pagina = array('tela' => 'login-administrador', 'erro'=> FALSE,);
 			$this->load->view('construtor', $pagina);
@@ -22,7 +22,7 @@ class Administracao extends CI_Controller {
 	public function fazerLogin(){
 
 		//Se o jogador já estiver logado, redireciona para o menu principal
-		if ($this->session->userdata('logged_in')) {
+		if ($this->session->userdata('codAdministrador')) {
                 redirect('administracao/menuAdministrador');
         } else{ 
 			//Salva o login e a senha digitados no array $dados
@@ -36,7 +36,7 @@ class Administracao extends CI_Controller {
 	                    'nome' => $login['nome'],
 	                    'logged_in' => TRUE,
 	                ));
-		    	//redirect('administracao/menuAdministrador');
+		    	redirect('administracao/menuAdministrador');
 		    } else {
 		    	$pagina = array('tela' => 'login-administrador', 'erro'=> TRUE, );
 				$this->load->view('construtor', $pagina);
@@ -52,8 +52,9 @@ class Administracao extends CI_Controller {
 
 	public function recuperarSenha()	
 	{
-		if ($this->session->userdata('logged_in')) {
-            redirect('principal/menu');
+		// Recuperacao de senha e para quem NAO consegue entrar.
+		if ($this->session->userdata('codAdministrador')) {
+            redirect('administracao/menuAdministrador');
         } else {
 			$pagina = array('tela' => 'recuperar-senha');
 			$this->load->view('construtor', $pagina);
@@ -62,8 +63,8 @@ class Administracao extends CI_Controller {
 
 	public function menuAdministrador()
 	{
-		if ($this->session->userdata('logged_in')) {
-            redirect('principal/menu');
+		if ( ! $this->session->userdata('codAdministrador')) {
+            redirect('administracao/index');
         } else {
 			$pagina = array('tela' => 'menu-administrador', 'linkNovel'=> 'menu-administrador', 'linkLogoff'=>'logoff',);
 			$this->load->view('construtor', $pagina);
@@ -72,8 +73,8 @@ class Administracao extends CI_Controller {
 
 	public function cadastrarPalavra()
 	{
-		if ($this->session->userdata('logged_in')) {
-            redirect('principal/menu');
+		if ( ! $this->session->userdata('codAdministrador')) {
+            redirect('administracao/index');
         } else {
 			$pagina = array('tela' => 'cadastrar-palavra', 'linkNovel'=> 'menu-administrador', 'linkLogoff'=>'logoff');
 			$this->load->view('construtor', $pagina);
@@ -82,8 +83,8 @@ class Administracao extends CI_Controller {
 
 	public function editarPalavra()
 	{
-		if ($this->session->userdata('logged_in')) {
-            redirect('principal/menu');
+		if ( ! $this->session->userdata('codAdministrador')) {
+            redirect('administracao/index');
         } else {
 			$pagina = array('tela' => 'editar-palavra', 'linkNovel'=> 'menu-administrador', 'linkLogoff'=>'logoff');
 			$this->load->view('construtor', $pagina);
@@ -92,8 +93,8 @@ class Administracao extends CI_Controller {
 
 	public function cadastrarTexto()
 	{
-		if ($this->session->userdata('logged_in')) {
-            redirect('principal/menu');
+		if ( ! $this->session->userdata('codAdministrador')) {
+            redirect('administracao/index');
         } else {
 			$pagina = array('tela' => 'cadastrar-texto', 'linkNovel'=> 'menu-administrador', 'linkLogoff'=>'logoff');
 			$this->load->view('construtor', $pagina);
@@ -102,8 +103,8 @@ class Administracao extends CI_Controller {
 
 	public function editarTexto()
 	{
-		if ($this->session->userdata('logged_in')) {
-            redirect('principal/menu');
+		if ( ! $this->session->userdata('codAdministrador')) {
+            redirect('administracao/index');
         } else {
 			$pagina = array('tela' => 'editar-texto', 'linkNovel'=> 'menu-administrador', 'linkLogoff'=>'logoff');
 			$this->load->view('construtor', $pagina);

@@ -1,5 +1,6 @@
 </div>
 
+<?php if ( ! empty($abrirModalHistoria)): ?>
 <!--MODAL DA HISTORIA-->
 
 <div class="modal fade" id="modalHistoria" role="dialog">		
@@ -51,7 +52,9 @@
 	  </div>
 	</div>
 	<input type="hidden" name="qtd" id="qtd" value="<?php echo $abrirModalHistoria[1]; ?>">
+<?php endif; ?>
 
+<?php if ( ! empty($conquista)): ?>
 <!-- MODAL DA CONQUISTA -->
 
  <!-- Modal -->
@@ -67,7 +70,7 @@
          		$avatar = $this->session->userdata('avatar');
          		echo '<div class="row conquista">';
          			echo '<h4 class="titulo">'.$conquista.'/20</h4>';
-					echo '<h4 class="titulo">'.$nomeConquista[0]->nomeConquista.'</h4>';					
+				echo '<h4 class="titulo">'.(isset($nomeConquista[0]) ? $nomeConquista[0]->nomeConquista : '').'</h4>';
 				echo '</div>';				    		    	
 	    		echo '<div class="row conquista">';
 					echo 	'<img class="historia centered img-responsive" src="'.base_url('assets/img/conquistas/'.$avatar.'/conquista'.$conquista.'.png').'">';	        					
@@ -80,6 +83,7 @@
       </div>
     </div>
   </div>
+<?php endif; ?>
 
 
 
@@ -100,13 +104,13 @@
 
 <?php	
 
-	if ($conquista != 0){
+	if ( ! empty($conquista)){
 		echo '<script language="javascript">';			
 				echo '$("#modalConquista").modal();';
 		echo '</script>';
 	}
 
-	if ($abrirModalHistoria != FALSE){
+	if ( ! empty($abrirModalHistoria)){
 		echo '<script language="javascript">';			
 				echo '$("#modalHistoria").modal();';
 		echo '</script>';
@@ -117,8 +121,11 @@
 <script type="text/javascript">
 	i = 0;
 	function fecharHistoria(){
+		// O campo #qtd so existe quando o modal da historia foi renderizado.
+		var qtd = document.getElementById("qtd");
+		if (!qtd) { return; }
 		i++;
-		if(i == document.getElementById("qtd").value){
+		if(i == qtd.value){
 			$("#modalHistoria").modal("hide");
 		}		
 	}

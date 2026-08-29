@@ -13,14 +13,17 @@ class modelJogador extends CI_Model {
 	public function fazerLogin($login, $senha)
 	{	
 		
-		$senha = md5($senha);
-		
 		$this->db->select('*');
 		$this->db->from('Jogador');
 		$this->db->where('login', $login);
-		$this->db->where('senha', $senha);
 		$this->db->limit(1);
 		$query = $this->db->get()->result();
+
+		// Confere o hash em PHP: password_hash() usa salt, entao nao da para
+		// comparar dentro do WHERE como o md5 antigo fazia.
+		if ($query != NULL && ! $this->conferirSenha($senha, $query[0])) {
+			$query = NULL;
+		}
 
 		
 
@@ -42,11 +45,33 @@ class modelJogador extends CI_Model {
 		} 
 	}
 
+	/**
+	 * Confere a senha contra o hash guardado. Linhas antigas gravadas em md5
+	 * (ou em texto puro, como as que recuperarSenha() gerava) continuam
+	 * entrando e sao regravadas em password_hash() no primeiro login.
+	 */
+	private function conferirSenha($senha, $jogador)
+	{
+		if (password_verify($senha, $jogador->senha)) {
+			return TRUE;
+		}
+
+		if (md5($senha) === $jogador->senha OR $senha === $jogador->senha) {
+			$this->db->where('codJogador', $jogador->codJogador);
+			$this->db->update('Jogador', array(
+				'senha' => password_hash($senha, PASSWORD_DEFAULT),
+			));
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+
 	public function cadastrarJogador($dados){
 		$nome = $dados['nome'];
 		$email = $dados['email'];
 		$login = $dados['login'];
-		$senha = md5($dados['senha1']);
+		$senha = password_hash($dados['senha1'], PASSWORD_DEFAULT);
 		$avatar = $dados['avatar'];
 
 		
@@ -84,14 +109,14 @@ class modelJogador extends CI_Model {
 		if($mudou == $codJogador){
 			$query = array('nome' => $dados['nome'],
 				'login'=> $dados['login'],
-				'senha'=> md5($dados['senha1']),				
+				'senha'=> password_hash($dados['senha1'], PASSWORD_DEFAULT),				
 				);			
 			$this->db->where('codJogador', $codJogador);
 			$retorno = $this->db->update('Jogador', $query);
 		} else {
 			$query = array('nome' => $dados['nome'],
 				'login'=> $dados['login'],
-				'senha'=> md5($dados['senha1']),				
+				'senha'=> password_hash($dados['senha1'], PASSWORD_DEFAULT),				
 				'email' => $dados['email'],
 			);
 			$this->db->where('codJogador', $codJogador);
@@ -103,8 +128,7 @@ class modelJogador extends CI_Model {
 
 	public function recuperarSenha($email){
 		$senhaNova = $this->gerarNovaSenha();
-		$sennhaNova = md5($senhaNova);
-		$this->db->set('senha', $senhaNova);		
+		$this->db->set('senha', password_hash($senhaNova, PASSWORD_DEFAULT));		
 		$this->db->where('email', $email);
 		$this->db->update('Jogador');		
 		return $senhaNova;

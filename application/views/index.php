@@ -9,7 +9,7 @@
 </head>
 
 <body id="pagina-inicial">
-<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.1.0.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/jquery-3.7.1.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
 
 
@@ -38,6 +38,7 @@
 				<div class="row">
 					<div id="painel-login" class="col-md-10 col-md-offset-1 col-xs-12" style="text-align: center;">
 						<form class="form-horizontal" role="form" method="post" action="<?php echo base_url('principal/fazerLogin');?>">
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 						  	<div class="form-group col-md-12 col-xs-12">
 						    	<label for="login" style="text-align: left!important; width: 100%; color: #FFFFFF;">Login:</label>
 						    	<input type="text" required="" name="login" class="form-control" id="login" placeholder="Login">
@@ -55,6 +56,7 @@
 						<div class="col-md-10 col-xs-10 centered">				
 							<h4>Informe o e-mail para receber sua nova senha</h4>	
 							<form class="form-horizontal" role="form" method="post" action="<?php echo base_url('principal/recuperarSenha');?>">
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 								<div class="form-group">
 								   	<label for="email" style="text-align: left!important; width: 100%; color: #FFFFFF;">E-mail:</label>
 								   	<input type="email" class="form-control afastado-1pc" id="email" name="email">

@@ -5,7 +5,7 @@
 	    	<span class="icon-bar"></span>
 	    	<span class="icon-bar"></span>
 	    </button>
-		<a class="navbar-brand" href="<?php echo base_url($linkNovel); ?>">Novel</a>
+		<a class="navbar-brand" href="<?php echo base_url(isset($linkNovel) ? $linkNovel : 'principal/menu'); ?>">Novel</a>
 		<img class="img-responsive" style="border-radius: 50%;" width="100px;" id="avatarNav" src="<?php echo base_url('assets/img/'.$this->session->userdata('avatar').'.png'); ?>">
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -29,7 +29,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="<?php echo base_url($linkLogoff);?>">
+				<a href="<?php echo base_url(isset($linkLogoff) ? $linkLogoff : 'principal/logoff');?>">
 					<span class="glyphicon glyphicon-log-out"></span> Sair
 				</a>
 			</li>

@@ -16,6 +16,7 @@
 							</div>						
 							
 							<form class="form-vertical" id="form" role="form" method="post" action="<?php echo base_url('principal/editarCadastro');?>">
+<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							  	<div class="row">
 							  		<div class="form-group centered">
 							  			<div class="col-md-4 col-xs-4">

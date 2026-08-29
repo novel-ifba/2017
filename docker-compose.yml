@@ -3,11 +3,7 @@ name: novel
 services:
   db:
     image: mariadb:10.6
-    # O app referencia a mesma tabela com grafias diferentes (PalavraBonus e
-    # palavrabonus em ModelPalavra.php), o que quebra em filesystem
-    # case-sensitive. lower-case-table-names deixa a comparacao insensivel.
     command: >
-      --lower-case-table-names=1
       --character-set-server=utf8
       --collation-server=utf8_general_ci
     environment:
@@ -34,6 +30,8 @@ services:
       DB_PASSWORD: admnovel
       DB_NAME: novel
       BASE_URL: http://localhost:8080/
+      # 'development' expoe erros do PHP ao visitante (index.php).
+      CI_ENV: production
     volumes:
       - .:/var/www/html
     depends_on:

@@ -120,7 +120,7 @@ class modelTeste extends CI_Model {
                 'pontuacao' => $pontuacao,
             );                    
 
-            $this->db->insert('rodada', $dadosRodada); 
+            $this->db->insert('Rodada', $dadosRodada); 
             $codRodada = $this->db->insert_id();
             
             foreach ($separados as $key) {                
