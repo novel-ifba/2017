@@ -15,7 +15,7 @@ class Principal extends CI_Controller {
 	{		
 		if ($this->session->userdata('logged_in')) {			
             //$this->logoff();
-            redirect('principal/menu');
+            redirect('menu');
         } else {        	
 			$pagina = array('tela' => 'index', 'erro' => FALSE, 'abrirModalHistoria'=> FALSE, 'enviou' =>  TRUE, 'email'=>NULL, 'conquista' => 0);
 			$this->load->view('construtor', $pagina);
@@ -27,7 +27,7 @@ class Principal extends CI_Controller {
 	{
 
 		if ($this->session->userdata('logged_in')) {
-            redirect('principal/menu');
+            redirect('menu');
         } else{ 			       			
 			$pagina = array('tela' => 'index', 'erro'=> FALSE, 'abrirModalHistoria'=> FALSE, 'enviou' =>  TRUE, 'email'=>NULL, 'conquista' => 0,);
 			$this->load->view('construtor', $pagina);
@@ -38,7 +38,7 @@ class Principal extends CI_Controller {
 
 		//Se o jogador já estiver logado, redireciona para o menu principal
 		if ($this->session->userdata('logged_in')) {
-                redirect('principal/menu');
+                redirect('menu');
         } else{ 
 			//Salva o login e a senha digitados no array $dados
 		    $dados = $this->input->post(array('login', 'senha'));
@@ -55,7 +55,7 @@ class Principal extends CI_Controller {
 	                    'nivel' => $login['nivel'],
 	                    'experiencia' => $login['experiencia'],
 	                ));
-		    	redirect('principal/menu');
+		    	redirect('menu');
 		    } else {
 		    	$pagina = array('tela' => 'index', 'erro'=> TRUE, 'abrirModalHistoria'=> FALSE, 'enviou' => TRUE, 'email'=>NULL, 'conquista' => 0,);
 				$this->load->view('construtor', $pagina);
@@ -66,13 +66,13 @@ class Principal extends CI_Controller {
 	public function logoff() {
 
         $this->session->sess_destroy();
-        redirect('principal/index');
+        redirect('login');
     }
 
 	public function recuperarSenha()
 	{
 		if ($this->session->userdata('logged_in')) {
-            redirect('principal/menu');
+            redirect('menu');
         } else {	
         	$email = $this->input->post();
 
@@ -96,10 +96,10 @@ class Principal extends CI_Controller {
 	public function menu()
 	{				
 		if ($this->session->userdata('logged_in')) {		
-        	$pagina = array('tela' => 'menu', 'linkNovel'=> 'principal/menu', 'linkLogoff'=>'principal/logoff', 'abrirModalHistoria'=> FALSE, 'conquista' => 0);
+        	$pagina = array('tela' => 'menu', 'linkNovel'=> 'menu', 'linkLogoff'=>'sair', 'abrirModalHistoria'=> FALSE, 'conquista' => 0);
 			$this->load->view('construtor', $pagina);    
         } else {
-			redirect('principal/index');
+			redirect('login');
 		}
 	}
 
@@ -115,8 +115,8 @@ class Principal extends CI_Controller {
 		$pagina = array('tela' => 'sobre',				
 				'erro' => FALSE,
 				'abrirModalHistoria'=> FALSE,
-				'linkNovel'=> 'principal/menu', 
-				'linkLogoff'=>'principal/logoff',
+				'linkNovel'=> 'menu', 
+				'linkLogoff'=>'sair',
 				'existe' => FALSE,
 				'conquista' => 0,);
 		$this->load->view('construtor', $pagina);
@@ -126,7 +126,7 @@ class Principal extends CI_Controller {
 	public function cadastrarJogador()
 	{					
 		if ($this->session->userdata('logged_in')) {
-        	redirect('principal/menu');    
+        	redirect('menu');    
         } else {
 			$pagina = array('tela' => 'cadastrar-jogador', 'erro' => FALSE, 'existe' => FALSE, 'conquista' => 0,  'abrirModalHistoria'=> FALSE,);
 			$this->load->view('construtor', $pagina);
@@ -135,7 +135,7 @@ class Principal extends CI_Controller {
 
 	public function realizarCadastro(){
 		if ($this->session->userdata('logged_in')) {
-        	redirect('principal/menu');    
+        	redirect('menu');    
         } else {
         	$dados = $this->input->post();
         	$existe = $this->modelJogador->verificarEmailCadastrado($dados['email']);
@@ -168,7 +168,7 @@ class Principal extends CI_Controller {
 	                    'experiencia' => $logou['experiencia'],
 	                ));
 		    	$this->modelJogador->conquistarEntrada($logou['codJogador']);
-		    	redirect('principal/menu');
+		    	redirect('menu');
 		    } else {
 		    	$pagina = array('tela' => 'index', 'erro'=> TRUE, 'abrirModalHistoria'=> FALSE, 'conquista' => 0,);
 				$this->load->view('construtor', $pagina);
@@ -198,15 +198,15 @@ class Principal extends CI_Controller {
 				'tempoTotal' =>$tempoTotal,
 				'experiencia' =>$experiencia,
 				'conquistas' =>$conquistas,
-				'linkNovel'=> 'principal/menu', 
-				'linkLogoff'=>'principal/logoff',
+				'linkNovel'=> 'menu', 
+				'linkLogoff'=>'sair',
 				'conquista' => 0,
 				'avatar' => $avatar,	
 				);
 			
 			$this->load->view('construtor', $pagina);
 		} else {
-			redirect('principal/index');
+			redirect('login');
 		}
 	}
 
@@ -219,15 +219,15 @@ class Principal extends CI_Controller {
 				'erro' => FALSE,
 				'abrirModalHistoria'=> FALSE,
 				'jogador' => $jogador,
-				'linkNovel'=> 'principal/menu', 
-				'linkLogoff'=>'principal/logoff',
+				'linkNovel'=> 'menu', 
+				'linkLogoff'=>'sair',
 				'existe' => FALSE,
 				'conquista' => 0,
 				);
 			
 			$this->load->view('construtor', $pagina);
 		} else {
-			redirect('principal/index');
+			redirect('login');
 		}
 	}
 
@@ -238,12 +238,12 @@ class Principal extends CI_Controller {
 		$editou = $this->modelJogador->editarCadastroJogador($dados, $codJogador);
 		if ($editou){
 			echo '<script>alert("Seus dados foram alterados!");';
-			echo 'window.location="'.base_url('principal/menu').'";';
+			echo 'window.location="'.base_url('menu').'";';
 			echo '</script>';
 			
 		} else {
 			echo '<script>alert("Seus dados não foram alterados. Por favor, tente novamente!");';
-			echo 'window.location="'.base_url('principal/menu').'";';
+			echo 'window.location="'.base_url('menu').'";';
 			echo '</script>';			
 		}
 	}
@@ -258,8 +258,8 @@ class Principal extends CI_Controller {
 	
 		$pagina = array(
 		'tela' => 'bonus', 
-		'linkNovel'=> 'principal/menu', 
-		'linkLogoff'=>'principal/logoff', 				
+		'linkNovel'=> 'menu', 
+		'linkLogoff'=>'sair', 				
 		'abrirModalHistoria'=> FALSE,												
 		'conquista' => 0,
 		'bonus'=>$bonus,

@@ -1,5 +1,5 @@
 <!-- Aqui e a area do conteudo -->
-	<div class="col-md-12 col-xs-12 afastado-1pc vertical-center">
+	<div class="row afastado-1pc vertical-center">
 		<div class="col-md-9 col-xs-12 centered">
 			<?php $temBonus = ! empty($bonus[0][0]) && ! empty($bonus[1]) && ! empty($bonus[2][0]); ?>
 			<?php if ($temBonus): ?>
@@ -73,7 +73,7 @@
 			<h2 class="titulo">Nenhum b&ocirc;nus liberado ainda</h2>
 			<p>Os b&ocirc;nus s&atilde;o desbloqueados por experi&ecirc;ncia. Continue jogando
 			palavras, textos e testes para liberar o primeiro.</p>
-			<a class="btn btn-success" href="<?php echo base_url('principal/menu'); ?>">Voltar ao menu</a>
+			<a class="btn btn-success" href="<?php echo base_url('menu'); ?>">Voltar ao menu</a>
 			<?php endif; ?>
 		</div>	
 

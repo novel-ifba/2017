@@ -39,8 +39,8 @@ class Teste extends CI_Controller {
 		
 				$pagina = array(
 					'tela' => 'menu-teste', 
-					'linkNovel'=> 'principal/menu', 
-					'linkLogoff'=>'principal/logoff', 
+					'linkNovel'=> 'menu', 
+					'linkLogoff'=>'sair', 
 					'abrirModalGabarito' => FALSE,
 					'abrirModalHistoria' => $abrirModalHistoria,
 					'inputJogador' => $inputJogador,
@@ -54,7 +54,7 @@ class Teste extends CI_Controller {
 					);
 				$this->load->view('construtor', $pagina);
         } else {
-			redirect('principal/index');
+			redirect('login');
 		}
 	}
 
@@ -82,8 +82,8 @@ class Teste extends CI_Controller {
 					}
 
 					$pagina = array('tela' => 'jogar-teste', 
-						'linkNovel'=> 'principal/menu', 
-						'linkLogoff'=>'principal/logoff', 
+						'linkNovel'=> 'menu', 
+						'linkLogoff'=>'sair', 
 						'testes'=> $testes,
 						'codGrafema' => $codGrafema,
 						'conquista' => 0,					
@@ -97,7 +97,7 @@ class Teste extends CI_Controller {
 				}
         } 
 	} else {
-			redirect('principal/index');
+			redirect('login');
 		}
 	}
 
@@ -158,8 +158,8 @@ class Teste extends CI_Controller {
 			
 				$pagina = array(
 					'tela' => 'menu-teste',
-					'linkNovel'=> 'principal/menu', 
-					'linkLogoff'=>'principal/logoff', 
+					'linkNovel'=> 'menu', 
+					'linkLogoff'=>'sair', 
 					'inputJogador' => $inputJogador,
 					'gabarito' => $gabarito,
 					'pontuacao' => $pontuacao,
@@ -173,7 +173,7 @@ class Teste extends CI_Controller {
 					);
 				$this->load->view('construtor', $pagina);
         } else {
-        	redirect('principal/index');
+        	redirect('login');
 		}	
 	}
 }

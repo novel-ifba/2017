@@ -3,8 +3,10 @@
 <head>
 	<title>Novel</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/estilo.css"); ?>" />
+	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body id="body">
@@ -16,11 +18,10 @@
 
 <!-- Aqui começa o conteudo -->
 <div role="main">
-	<div class="col-md-12 col-xs-12">	
+	<div class="container-fluid">	
 
 		
 			
 				
 		
-
 

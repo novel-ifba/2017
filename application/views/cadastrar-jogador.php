@@ -1,12 +1,12 @@
 <!-- Aqui e a area do conteudo -->
-			<div class="col-md-12 col-xs-12 afastado-1pc vertical-center">
+			<div class="row afastado-1pc vertical-center">
 				<div id="conteudo" class="col-md-6 col-xs-12 centered" >
 					<div class="row">
 						<div id="painel-login" class="col-md-12 col-xs-12">
 							<div class="row">
 								<h1 class="titulo-menu centered" style="color: #FFFFFF; text-transform: uppercase;">Cadastre-se para jogar!</h1><br><br>
 							</div>							
-							<form class="form-vertical col-md-12 col-xs-12 centered" id="form" role="form" method="post" action="<?php echo base_url('principal/realizarCadastro');?>">
+							<form class="form-vertical col-md-12 col-xs-12 centered" id="form" role="form" method="post" action="<?php echo base_url('cadastro/salvar');?>">
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							  <div class="col-md-offset-3 col-xs-offset-3">
 							  	<div class="row">

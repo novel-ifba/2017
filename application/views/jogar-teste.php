@@ -1,5 +1,5 @@
 
-<div id="conteudo" class="col-md-12 col-xs-12">				
+<div id="conteudo" class="row">				
 	<form id="form" class="form-inline" role="form" method="post" action="<?php echo base_url('teste/inserirRodadaTeste/');?>">
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">		
 			<div class="row">
@@ -88,7 +88,7 @@
 								<div class="row centered">
 									<div class="col-md-12 col-xs-12">
 										<button type="button" class="btn btn-success" onclick="pegarTempoFinal()" name="responder">Responder</button>
-										<button type="submit" value="submit" id="enviarRespostas" class="btn"" name="enviarRespostas"></button>										
+										<button type="submit" value="submit" id="enviarRespostas" class="btn" name="enviarRespostas"></button>										
 									</div>
 								</div>
 							</div>							
@@ -160,7 +160,7 @@
 		var confirma  =  confirm("Deseja mesmo sair? Sua pontuação não será computada.");
 		if (confirma){
 			url = document.getElementById("url").value;
-			string = url+"/principal/menu";
+			string = url+"/menu";
 			window.location.href = string;
 		}
 	}

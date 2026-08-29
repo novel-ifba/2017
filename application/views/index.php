@@ -3,6 +3,7 @@
 <head>
 	<title>Novel</title>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/estilo.css"); ?>" />
 	
@@ -37,7 +38,7 @@
 	        <div class="modal-body">          
 				<div class="row">
 					<div id="painel-login" class="col-md-10 col-md-offset-1 col-xs-12" style="text-align: center;">
-						<form class="form-horizontal" role="form" method="post" action="<?php echo base_url('principal/fazerLogin');?>">
+						<form class="form-horizontal" role="form" method="post" action="<?php echo base_url('autenticar');?>">
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 						  	<div class="form-group col-md-12 col-xs-12">
 						    	<label for="login" style="text-align: left!important; width: 100%; color: #FFFFFF;">Login:</label>
@@ -55,7 +56,7 @@
 					<div class="row" id="recuperarSenha" style="text-align: center;">
 						<div class="col-md-10 col-xs-10 centered">				
 							<h4>Informe o e-mail para receber sua nova senha</h4>	
-							<form class="form-horizontal" role="form" method="post" action="<?php echo base_url('principal/recuperarSenha');?>">
+							<form class="form-horizontal" role="form" method="post" action="<?php echo base_url('recuperar-senha');?>">
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 								<div class="form-group">
 								   	<label for="email" style="text-align: left!important; width: 100%; color: #FFFFFF;">E-mail:</label>
@@ -72,7 +73,7 @@
 		    <div class="row centered">
 		    	<div class="modal-footer">
 		    		<div class="row">
-						<a href="<?php echo base_url('principal/cadastrarJogador'); ?>" class="btn btn-block btn-lg btn-link t" role="button">Não tenho cadastro</a>
+						<a href="<?php echo base_url('cadastro'); ?>" class="btn btn-block btn-lg btn-link t" role="button">Não tenho cadastro</a>
 						<div  class="">
 							<button type="button" id="botao-esqueciSenha" class="btn btn-link" role="button" onclick="mostrarRecuperarSenha()">Esqueci a senha</a>
 						</div>

@@ -1,5 +1,5 @@
 <!-- Aqui e a area do conteudo -->
-			<div class="col-md-12 col-xs-12 vertical-center">
+			<div class="row vertical-center">
 				<div id="conteudo" class="col-md-4 col-xs-8 centered" >
 					<div class="row">
 						<div id="painel-login" class="centered col-md-12 col-xs-12">

@@ -29,8 +29,8 @@ class Texto extends CI_Controller {
 			$grafemasJogados = $this->modelTexto->buscarGrafemasJogadosTexto($codJogador);			
 						
 				$pagina = array('tela' => 'menu-texto', 
-					'linkNovel'=> 'principal/menu', 
-					'linkLogoff'=>'principal/logoff', 
+					'linkNovel'=> 'menu', 
+					'linkLogoff'=>'sair', 
 					'abrirModalHistoria'=> $abrirModalHistoria, 
 					'abrirModalGabarito' => FALSE, 
 					'erro' =>FALSE,
@@ -41,7 +41,7 @@ class Texto extends CI_Controller {
 
 				$this->load->view('construtor', $pagina);
         } else {
-			redirect('principal/menu');
+			redirect('menu');
 		}
 	}
 
@@ -67,8 +67,8 @@ class Texto extends CI_Controller {
 					$codTexto = $texto[0]->codTexto;				
 
 					$pagina = array('tela' => 'jogar-texto', 
-					'linkNovel'=> 'principal/menu', 
-					'linkLogoff'=>'principal/logoff',
+					'linkNovel'=> 'menu', 
+					'linkLogoff'=>'sair',
 					'texto' => $texto,
 					'grafemas' => $grafemas,
 					'conquista' => 0,
@@ -80,8 +80,8 @@ class Texto extends CI_Controller {
 					$grafemasJogados = $this->modelTexto->buscarGrafemasJogadosTexto($codJogador);
 
 					$pagina = array('tela' => 'menu-texto', 
-						'linkNovel'=> 'principal/menu', 
-						'linkLogoff'=>'principal/logoff', 
+						'linkNovel'=> 'menu', 
+						'linkLogoff'=>'sair', 
 						'abrirModalHistoria'=> FALSE, 
 						'abrirModalGabarito' => FALSE,	
 						'erro' => TRUE,
@@ -93,7 +93,7 @@ class Texto extends CI_Controller {
 				}
 			}			          
         } else {	
-			redirect('principal/index');
+			redirect('login');
 		}
 	}
 
@@ -156,8 +156,8 @@ class Texto extends CI_Controller {
 			
 				$pagina = array(
 					'tela' => 'menu-texto',
-					'linkNovel'=> 'principal/menu', 
-					'linkLogoff'=>'principal/logoff', 
+					'linkNovel'=> 'menu', 
+					'linkLogoff'=>'sair', 
 					'inputJogador' => $inputJogador,
 					'gabarito' => $gabarito,
 					'pontuacao' => $pontuacao,
@@ -172,7 +172,7 @@ class Texto extends CI_Controller {
 					);
 				$this->load->view('construtor', $pagina);	
 		} else {
-			redirect('principal/index');
+			redirect('login');
 		}
 	}
 }

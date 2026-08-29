@@ -1,5 +1,5 @@
 <!-- Aqui e a area do conteudo -->
-			<div class="col-md-12 col-xs-12 afastado-1pc vertical-center">
+			<div class="row afastado-1pc vertical-center">
 				<div id="conteudo" class="col-md-6 col-xs-12 centered" >
 					<div class="row">
 						<div id="painel-dados-usuario" class="col-md-12 col-xs-12">
@@ -15,7 +15,7 @@
 								</div>
 							</div>						
 							
-							<form class="form-vertical" id="form" role="form" method="post" action="<?php echo base_url('principal/editarCadastro');?>">
+							<form class="form-vertical" id="form" role="form" method="post" action="<?php echo base_url('minha-conta/salvar');?>">
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							  	<div class="row">
 							  		<div class="form-group centered">

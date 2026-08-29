@@ -52,3 +52,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'principal';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['entrar'] = 'principal/login';
+$route['login'] = 'principal/login';
+$route['autenticar'] = 'principal/fazerLogin';
+$route['sair'] = 'principal/logoff';
+$route['menu'] = 'principal/menu';
+$route['sobre-o-novel'] = 'principal/sobre';
+$route['meus-pontos'] = 'principal/meusPontos';
+$route['minha-conta'] = 'principal/minhaConta';
+$route['cadastro'] = 'principal/cadastrarJogador';
+$route['cadastro/salvar'] = 'principal/realizarCadastro';
+$route['recuperar-senha'] = 'principal/recuperarSenha';
+$route['minha-conta/salvar'] = 'principal/editarCadastro';
+$route['bonus/(:num)'] = 'principal/bonus/$1';

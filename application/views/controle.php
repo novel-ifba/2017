@@ -18,7 +18,7 @@
 
 		<!-- Aqui e a area do conteudo -->
 	<div class="col-md-12 col-xs-12">
-		<div id="conteudo" class="col-md-12 col-xs-12">
+		<div id="conteudo" class="row">
 			<div class="row">
 				<div class="col-md-12 col-xs-12 centered">					
 						<img class="img-responsive centered" src="">					

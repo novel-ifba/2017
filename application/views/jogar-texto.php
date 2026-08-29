@@ -1,4 +1,4 @@
-<div id="conteudo" class="col-md-12 col-xs-12">
+<div id="conteudo" class="row">
 	<form id="form" class="form-inline" role="form" method="post" action="<?php echo base_url('texto/inserirRodadaTexto');?>">
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">	
 		<div class="row">
@@ -116,7 +116,7 @@
 		var confirma  =  confirm("Deseja mesmo sair? Sua pontuação não será computada.");
 		if (confirma){
 			url = document.getElementById("url").value;
-			string = url+"/principal/menu";
+			string = url+"/menu";
 			window.location.href = string;
 		}
 	}

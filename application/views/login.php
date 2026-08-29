@@ -1,10 +1,10 @@
 <!-- Aqui e a area do conteudo -->
-	<div class="col-md-12 col-xs-12 vertical-center">
+	<div class="row vertical-center">
 		<div id="conteudo" class="col-md-4 col-xs-12 centered" >
 			<div class="row">
 				<div id="painel-login" class="centered col-md-12 col-xs-12">
 					<h2>Entre e torne-se um novel!</h2>
-					<form class="form-inline" role="form" method="post" action="<?php echo base_url('principal/fazerLogin');?>">
+					<form class="form-inline" role="form" method="post" action="<?php echo base_url('autenticar');?>">
 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 					  	<div class="form-group">
 					    	<label for="login">Login:</label>
@@ -19,11 +19,11 @@
 							
 						</div>
 						<div class="row centered afastado-1pc col-md-10 col-xs-12">
-							<a href="<?php echo base_url('principal/cadastrarJogador'); ?>" class="btn btn-block btn-lg btn-info" role="button">Não tenho cadastro</a>
+							<a href="<?php echo base_url('cadastro'); ?>" class="btn btn-block btn-lg btn-info" role="button">Não tenho cadastro</a>
 						</div>
 						<div class="row">
 							<div id="botao-esqueciSenha" class="col-md-6 col-xs-6 centered">
-								<a href="<?php echo base_url('principal/recuperarSenha'); ?>" class="btn btn-link" role="button">Esqueci a senha</a>
+								<a href="<?php echo base_url('recuperar-senha'); ?>" class="btn btn-link" role="button">Esqueci a senha</a>
 							</div>
 						</div>
 					</form>								

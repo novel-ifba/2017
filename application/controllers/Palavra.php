@@ -32,8 +32,8 @@ class Palavra extends CI_Controller {
 			}				
 				$pagina = array(
 				'tela' => 'menu-palavra', 
-				'linkNovel'=> 'principal/menu', 
-				'linkLogoff'=>'principal/logoff', 
+				'linkNovel'=> 'menu', 
+				'linkLogoff'=>'sair', 
 				'abrirModalGabarito' => FALSE,
 				'inputJogador' => $inputJogador,
 				'abrirModalHistoria'=> $abrirModalHistoria,
@@ -48,7 +48,7 @@ class Palavra extends CI_Controller {
 				);
 				$this->load->view('construtor', $pagina);	
         } else {
-			redirect('principal/index');
+			redirect('login');
 		}
 	}
 
@@ -78,8 +78,8 @@ class Palavra extends CI_Controller {
 					}
 
 					$pagina = array('tela' => 'jogar-palavra', 
-						'linkNovel'=> 'principal/menu', 
-						'linkLogoff'=>'principal/logoff', 
+						'linkNovel'=> 'menu', 
+						'linkLogoff'=>'sair', 
 						'palavras'=> $palavras,
 						'grafema'=> $grafema, 
 						'codGrafema' => $codGrafema,
@@ -95,7 +95,7 @@ class Palavra extends CI_Controller {
 				}
 			}
         } else {
-			redirect('principal/index');
+			redirect('login');
 		}		
 	}
 
@@ -153,8 +153,8 @@ class Palavra extends CI_Controller {
 
 				$pagina = array(
 					'tela' => 'menu-palavra',
-					'linkNovel'=> 'principal/menu', 
-					'linkLogoff'=>'principal/logoff', 
+					'linkNovel'=> 'menu', 
+					'linkLogoff'=>'sair', 
 					'inputJogador' => $inputJogador,
 					'gabarito' => $gabarito,
 					'pontuacao' => $pontuacao,
@@ -171,7 +171,7 @@ class Palavra extends CI_Controller {
 					);
 				$this->load->view('construtor', $pagina);		
         } else {
-        	redirect('principal/index');
+        	redirect('login');
 		}	
 	}
 }

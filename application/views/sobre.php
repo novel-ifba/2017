@@ -1,14 +1,14 @@
 <!-- Aqui e a area do conteudo -->
-			<div class="col-md-12 col-xs-12 afastado-1pc vertical-center">
-				<div id="conteudo" class="col-md-10 col-xs-12 centered" >
-					<div class="row"">
+			<div class="novel-page novel-page-narrow vertical-center">
+				<div id="conteudo">
+					<div>
 						<h2 class="titulo-sobre">Novel - Um software educativo para aprendizagem autônoma de ortografia</h2>					
 					</div>
-					<div class="row">
-						<h3 class="sobre" style="letter-spacing: 3px!important;	font-size: 25px!important; text-shadow: 1px 1px #000000;">
+					<div>
+						<h3 class="sobre novel-about-text">
 							Novel é um software que visa auxiliar os estudantes do ensino médio na aprendizagem e estudo das regras ortográficas. Segundo Grossi (2001), algumas das maiores dificuldades dos alunos para dominar a escrita são:
 							<br/><br/>
-							<ul style="list-style: none; color: #FFFFFF; text-align: center;">								
+							<ul>								
 								<li>Trocas entre o l e o r; </li>
 								<li>O uso de n, r, l e s depois de vogais;</li>
 								<li>O uso do Z ou S;</li>
@@ -21,11 +21,11 @@
 							Este software faz parte do trabalho de conclusão de curso de Italo Miranda, aluno do curso de Bacharelado em Sistemas de Informação, do IFBA - Campus Vitória da Conquista.
 						</h3>						
 					</div>
-					<div class="row">
+					<div>
 						<h2>Equipe de desenvolvimento</h2>
-						<h3 style="letter-spacing: 3px!important;	font-size: 25px!important; text-shadow: 1px 1px #000000;">
+						<h3 class="sobre novel-about-text">
 							Este jogo foi desenvolvido por
-							<ul style="list-style: none;">
+							<ul>
 								<li>Italo Miranda</li>
 								<li>Breno Lessa</li>
 								<li>Leandro Ramos</li>								

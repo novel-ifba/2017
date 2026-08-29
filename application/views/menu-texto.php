@@ -1,5 +1,5 @@
 	<!-- Aqui é a área do conteúdo -->
-	<div id="conteudo" class="col-md-12 col-xs-12">
+	<div id="conteudo" class="row">
 		<div class="row">
 				<h3 class="titulo-menu">Nível Texto</h3>
 		</div>
