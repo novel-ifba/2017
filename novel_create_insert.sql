@@ -1,6 +1,5 @@
 
-ALTER DATABASE Novel-Conquista_ CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE Novel;
+USE novel;
 
 CREATE TABLE Jogador (
 email Varchar(30) NOT NULL,
@@ -177,7 +176,8 @@ ALTER TABLE JogadorBonus CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 
 INSERT INTO Jogador (nome, email, login, senha, avatar) VALUES 
-  ("Teste", "teste@mail.com", "teste", "teste", "graciliano");
+  -- ModelJogador::fazerLogin() compara md5($senha); a senha em claro e "123@Mudar".
+  ("Teste", "teste@mail.com", "teste", "a6ac10b3b739e420edacb541488d6b1f", "graciliano");
 
 INSERT INTO Grafema (tipoGrafema, quadros) VALUES 
 	("g_j", 3),
@@ -1450,7 +1450,7 @@ INSERT INTO Cenas(nomeCena, nivelDesbloqueio, quadros) VALUES
   ("cena17", 24, 9);
 
 INSERT INTO Administrador (nome, email, login, senha) VALUES 
-	("Administrador do Novel", "novel.noreply@gmail.com", "teste123", "teste123");
+	("Administrador do Novel", "novel.noreply@gmail.com", "teste123", "123@Mudar");
 
 INSERT INTO Bonus (textoBonus, experienciaNecessaria) VALUES
 	("ETEULRHGABILZTAWDODFEVMJZIVXNJCCOMCIESHOYNTQGHTNDGGTRCZPMKSIOXJPLWYOVBMUTRCCKBADOLTIYAXYWWAGPJOWSSDIKOPAMRUTVDDEUQIOXTOLRZDXUJIAHLQOOVNIPYOYBSXBBALPSDCLIOIRDERRPASFPEBOTGDTSEIWYBYTZLANOICIDSIRUJYLKMROXVNDJCVYKBQVROWNMVHAOFUJH", 200),

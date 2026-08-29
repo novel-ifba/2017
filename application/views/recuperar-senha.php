@@ -1,4 +1,4 @@
-﻿	<!-- Aqui e a area do conteudo -->
+	<!-- Aqui e a area do conteudo -->
 	<div id="conteudo" class="col-md-6 centered">
 		<div class="row">
 			<div class="col-md-8 centered">				

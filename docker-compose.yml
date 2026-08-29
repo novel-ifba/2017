@@ -1,0 +1,44 @@
+name: novel
+
+services:
+  db:
+    image: mariadb:10.6
+    # O app referencia a mesma tabela com grafias diferentes (PalavraBonus e
+    # palavrabonus em ModelPalavra.php), o que quebra em filesystem
+    # case-sensitive. lower-case-table-names deixa a comparacao insensivel.
+    command: >
+      --lower-case-table-names=1
+      --character-set-server=utf8
+      --collation-server=utf8_general_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: admnovel
+      MYSQL_DATABASE: novel
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./novel_create_insert.sql:/docker-entrypoint-initdb.d/01-novel.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-padmnovel"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: admnovel
+      DB_NAME: novel
+      BASE_URL: http://localhost:8080/
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db_data:

@@ -1,0 +1,7 @@
+.git
+.metadata
+.settings
+.buildpath
+.project
+desktop.ini
+docker-compose.yml
