@@ -47,6 +47,13 @@
 	background: linear-gradient(135deg, #2980b9 0%,#2989d8 50%,#207cca 51%,#19aaff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#263cff', endColorstr='#19aaff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+body > div[role="main"] {
+	flex: 1 0 auto;
+	width: 100%;
 }
 
 .container-fluid {
@@ -63,6 +70,19 @@
 
 #footer{	
 	text-align: center;
+}
+
+.novel-footer {
+	flex-shrink: 0;
+	width: 100%;
+	padding: 18px 16px 24px;
+	text-align: center;
+}
+
+.novel-footer h5 {
+	max-width: 760px;
+	margin: 0 auto;
+	line-height: 1.25;
 }
 
 #palavraIncompleta{
@@ -334,7 +354,7 @@ h3{
 
 .novel-page {
 	width: 100%;
-	padding: 24px 16px 40px;
+	padding: 24px 16px 28px;
 }
 
 .novel-page-narrow {
@@ -346,10 +366,11 @@ h3{
 	max-width: 980px;
 	margin: 0 auto;
 	color: #1f2933;
+	line-height: 1.2;
 }
 
 .novel-about-text ul {
-	margin: 24px auto;
+	margin: 20px auto;
 	padding: 0;
 	color: #FFFFFF;
 	text-align: center;

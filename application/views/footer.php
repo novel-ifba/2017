@@ -87,11 +87,11 @@
 
 
 
-<div class="row centered">
-	<div class="col-md-12 col-xs-12" id="footer" style="padding: 1%;">
+<footer class="novel-footer">
+	<div id="footer">
 		<h5>Novel - Um Software Educativo para a Aprendizagem Autônoma de Ortografia - 2017</h5>	
 	</div>
-</div>
+</footer>
 	
 
 <!-- Fechamentos das divs principais. Não apagar!-->

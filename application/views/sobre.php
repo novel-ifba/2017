@@ -1,5 +1,5 @@
 <!-- Aqui e a area do conteudo -->
-			<div class="novel-page novel-page-narrow vertical-center">
+			<div class="novel-page novel-page-narrow">
 				<div id="conteudo">
 					<div>
 						<h2 class="titulo-sobre">Novel - Um software educativo para aprendizagem autônoma de ortografia</h2>					
@@ -33,3 +33,5 @@
 							E orientado pelo professor Msc. Pablo Freire Matos
 						</h3>			
 					</div>
+				</div>
+			</div>
