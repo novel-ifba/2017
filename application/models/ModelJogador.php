@@ -105,24 +105,23 @@ class modelJogador extends CI_Model {
 	}
 
 	public function editarCadastroJogador($dados, $codJogador){
-		$mudou = $this->verificarEmailCadastrado($dados['email']);		
-		if($mudou == $codJogador){
-			$query = array('nome' => $dados['nome'],
-				'login'=> $dados['login'],
-				'senha'=> password_hash($dados['senha1'], PASSWORD_DEFAULT),				
-				);			
-			$this->db->where('codJogador', $codJogador);
-			$retorno = $this->db->update('Jogador', $query);
-		} else {
-			$query = array('nome' => $dados['nome'],
-				'login'=> $dados['login'],
-				'senha'=> password_hash($dados['senha1'], PASSWORD_DEFAULT),				
-				'email' => $dados['email'],
-			);
-			$this->db->where('codJogador', $codJogador);
-			$retorno = $this->db->update('Jogador', $query);	
+		$emailCadastrado = $this->verificarEmailCadastrado($dados['email']);
+		if ($emailCadastrado && (int) $emailCadastrado[0]->codJogador !== (int) $codJogador) {
+			return FALSE;
 		}
-		return $retorno;
+
+		$query = array(
+			'nome' => $dados['nome'],
+			'login'=> $dados['login'],
+			'email' => $dados['email'],
+		);
+
+		if ( ! empty($dados['senha1'])) {
+			$query['senha'] = password_hash($dados['senha1'], PASSWORD_DEFAULT);
+		}
+
+		$this->db->where('codJogador', $codJogador);
+		return $this->db->update('Jogador', $query);
 	}
 
 
@@ -474,6 +473,5 @@ class modelJogador extends CI_Model {
 		$retorno = $this->db->get()->result();
 	}
 }
-
 
 
