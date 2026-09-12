@@ -5,3 +5,5 @@
 .project
 desktop.ini
 docker-compose.yml
+.env
+.env.*

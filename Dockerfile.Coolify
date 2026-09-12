@@ -1,0 +1,25 @@
+# CodeIgniter 3.1.0 nao roda em PHP 8.x. 7.4 e a versao mais nova compativel.
+# Diferente do Dockerfile local (que depende do bind mount do docker-compose),
+# este Dockerfile copia o codigo para dentro da imagem, pois em producao
+# (Coolify) nao ha bind mount do host.
+FROM php:7.4-apache
+
+RUN docker-php-ext-install mysqli \
+ && a2enmod rewrite
+
+COPY docker/apache/novel.conf /etc/apache2/conf-available/novel.conf
+RUN a2enconf novel
+
+COPY docker/php/novel.ini /usr/local/etc/php/conf.d/novel.ini
+RUN mkdir -p /var/lib/php/sessions \
+ && chown www-data:www-data /var/lib/php/sessions
+
+WORKDIR /var/www/html
+
+# .dockerignore garante que .git, .env e arquivos de IDE nao entrem na imagem.
+COPY . /var/www/html
+
+# application/cache e application/logs precisam ser graváveis pelo Apache em runtime.
+RUN chown -R www-data:www-data /var/www/html/application/cache /var/www/html/application/logs
+
+EXPOSE 80
